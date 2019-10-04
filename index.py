@@ -16,17 +16,17 @@ def init_settings():
 
 def main():
 	global settings
-   
+
 	try:
 		settings = init_settings()
 		slack = Slacker(settings.token)
-		channel_id = slack.channels.get_channel_id(settings.channel)
+		channel_id = settings.channel
 		slack.chat.command(
 	        channel=channel_id,
 	        command='/' + settings.command,
 	        text=settings.instruction
 		)
-		
+
 	except (KeyboardInterrupt, SystemExit):
 		print "-> Aborted through user interaction"
 
